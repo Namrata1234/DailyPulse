@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		931E41C02D706B4300553C20 /* AboutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E41BF2D706B4300553C20 /* AboutListView.swift */; };
 		931E41C22D70711700553C20 /* AboutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E41C12D70711700553C20 /* AboutScreen.swift */; };
+		931E41C42D7C483D00553C20 /* ArticlesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931E41C32D7C483D00553C20 /* ArticlesScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		931E41BF2D706B4300553C20 /* AboutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutListView.swift; sourceTree = "<group>"; };
 		931E41C12D70711700553C20 /* AboutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutScreen.swift; sourceTree = "<group>"; };
+		931E41C32D7C483D00553C20 /* ArticlesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				931E41BF2D706B4300553C20 /* AboutListView.swift */,
 				931E41C12D70711700553C20 /* AboutScreen.swift */,
+				931E41C32D7C483D00553C20 /* ArticlesScreen.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				931E41C42D7C483D00553C20 /* ArticlesScreen.swift in Sources */,
 				931E41C02D706B4300553C20 /* AboutListView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    id("co.touchlab.skie") version "0.10.0"
 }
 
 kotlin {
@@ -11,7 +12,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -26,6 +27,12 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             //put your multiplatform dependencies here
+            //  implementation(libs.kotinx.coroutines.core)
+            //
+            implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.0-alpha03")
+        }
+        androidMain.dependencies {
+           // implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -44,3 +51,4 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
+
