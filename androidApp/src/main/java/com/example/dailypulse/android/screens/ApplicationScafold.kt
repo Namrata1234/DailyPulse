@@ -14,18 +14,18 @@ import androidx.navigation.compose.rememberNavController
 import com.example.dailypulse.articles.ArticlesViewModel
 
 @Composable
-fun ApplicationScaffold(articlesViewModel: ArticlesViewModel) {
+fun ApplicationScaffold() {
     Scaffold {
         AppNavHost( modifier = Modifier
                 .fillMaxSize()
-                .padding(it), articlesViewModel
+                .padding(it)
         )
 
     }
 }
 
 @Composable
-fun AppNavHost(modifier: Modifier, articlesViewModel: ArticlesViewModel)
+fun AppNavHost(modifier: Modifier)
 {
     val navController = rememberNavController()
     NavHost(
@@ -36,7 +36,7 @@ fun AppNavHost(modifier: Modifier, articlesViewModel: ArticlesViewModel)
         composable(Screens.ARTICLES.route) {
             ArticlesScreen(
                 onAboutButtonClick = { navController.navigate(Screens.ABOUT.route) },
-                articlesViewModel,
+
             )
         }
 
