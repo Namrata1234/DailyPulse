@@ -3,9 +3,12 @@ plugins {
     alias(libs.plugins.androidLibrary)
     id("co.touchlab.skie") version "0.10.0"
     kotlin("plugin.serialization") version "1.9.20"
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
+    @Suppress("OPT_IN_USAGE")
+    targetHierarchy.default()
     androidTarget {
         compilations.all {
             kotlinOptions {
@@ -36,14 +39,17 @@ kotlin {
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.kotlinx.datetime)
             implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.0-alpha03")
+            implementation(libs.sql.coroutines.extensions)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.android)
+            implementation(libs.sql.android.driver)
            // implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
         }
 
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sql.native.driver)
         }
         commonTest.dependencies {
 
@@ -54,7 +60,7 @@ kotlin {
 
 android {
     namespace = "com.example.dailypulse"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         minSdk = 24
     }
@@ -64,3 +70,10 @@ android {
     }
 }
 
+sqldelight {
+    databases {
+        create(name = "DailyPulseDatabase") {
+            packageName.set("com.example.dailypulse.db")
+        }
+    }
+}

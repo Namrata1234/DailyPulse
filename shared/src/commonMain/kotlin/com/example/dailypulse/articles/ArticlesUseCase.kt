@@ -8,33 +8,39 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.todayIn
 import kotlin.math.abs
 
-class ArticlesUseCase(private val service: ArticlesService) {
+class ArticlesUseCase(private val repo: ArticlesRepository) {
 
-    suspend fun getArticles() :List<Article>{
-        val articleRow = service.fetchArticles()
-        return mapArticles(articleRow)
+    suspend fun getArticles(forceFetch: Boolean): List<Article> {
+        val articlesRaw = repo.getArticles(forceFetch)
+        return mapArticles(articlesRaw)
     }
 
-    private fun mapArticles(articleRow: List<ArticlesRaw>): List<Article> = articleRow.map {
-        articlesRaw -> Article(articlesRaw.title.toString(),articlesRaw.description?:"Click to find out more",
-            dateFormat(articlesRaw.date.toString()),articlesRaw.imageUrl.toString())
+    private fun mapArticles(articlesRaw: List<ArticlesRaw>): List<Article> = articlesRaw.map { raw ->
+        raw.title?.let {
+            raw.date?.let { it1 -> getDaysAgoString(it1) }?.let { it2 ->
+                Article(
+                    it,
+                    raw.description ?: "Click to find out more",
+                    it2,
+                    raw.imageUrl
+                        ?: "https://image.cnbcfm.com/api/v1/image/107326078-1698758530118-gettyimages-1765623456-wall26362_igj6ehhp.jpeg?v=1698758587&w=1920&h=1080"
+                )
+            }
+        }!!
     }
 
-
-    private fun dateFormat(dateString: String) : String{
-        val today= Clock.System.todayIn(TimeZone.currentSystemDefault())
+    private fun getDaysAgoString(date: String): String {
+        val today = Clock.System.todayIn(TimeZone.currentSystemDefault())
         val days = today.daysUntil(
-        Instant.parse(dateString).toLocalDateTime(TimeZone.currentSystemDefault()).date
+            Instant.parse(date).toLocalDateTime(TimeZone.currentSystemDefault()).date
         )
 
-        val result = when{
+        val result = when {
             abs(days) > 1 -> "${abs(days)} days ago"
             abs(days) == 1 -> "Yesterday"
             else -> "Today"
-
         }
 
-        return  result
-
+        return result
     }
 }
